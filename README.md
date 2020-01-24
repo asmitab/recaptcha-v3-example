@@ -1,5 +1,6 @@
 # recaptcha-v3-example
 Simple example to integrate Google recaptcha v3
+https://medium.com/@asmitak/google-recaptcha-v3-with-firebase-functions-a04657d893a9
 
 # Initialize firebase
 
@@ -73,4 +74,14 @@ firebase deploy --only hosting
 ```
 
 You site should be live on https://<app-id>.firebaseapp.com. You can enter values in the fields and hit submit to see the score returned by Google recaptcha on the next page
+
+# Testing
+
+Apart from manually testing on the firebase app online, you can run the puppeteer test included:
+
+```
+node test/test.js
+```
+
+Open the screenshot.png created by the test, and you should see a low score returned by recaptcha
 
