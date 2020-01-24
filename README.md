@@ -83,5 +83,5 @@ Apart from manually testing on the firebase app online, you can run the puppetee
 node test/test.js
 ```
 
-Open the screenshot.png created by the test, and you should see a low score returned by recaptcha
+Open the screenshot.png created by the test, and you should see a the score returned by recaptcha
 
