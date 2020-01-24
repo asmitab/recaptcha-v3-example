@@ -1,0 +1,25 @@
+{
+  "name": "lw-web-api",
+  "version": "1.0.0",
+  "description": "Backend apis for ladderworks website",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/unit-test.js",
+    "deploy": "gcloud functions deploy sendRecaptcha --set-env-vars RECAPTCHA_ORIGIN=$RECAPTCHA_ORIGIN,RECAPTCHA_SECRET=$RECAPTCHA_SECRET --runtime nodejs8 --trigger-http"
+  },
+  "author": "Asmita Barve-Karandikar",
+  "license": "ISC",
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "firebase-admin": "^8.9.0",
+    "firebase-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0",
+    "sinon": "^8.0.4",
+    "uuid": "^3.3.3"
+  }
+}

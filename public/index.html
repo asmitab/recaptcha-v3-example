@@ -1,0 +1,61 @@
+<html>
+
+<head>
+  <title>Recaptcha Test</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="env.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      //Add the recaptcha script
+      const recaptchaSrc = `https://www.google.com/recaptcha/api.js?render=${env.SITE_KEY}`;
+      const recpatchaScript = document.createElement('script');
+      recpatchaScript.src = recaptchaSrc;
+      document.getElementsByTagName('head')[0].appendChild(recpatchaScript);
+
+      $("#test-form").submit(function (event) {
+        event.preventDefault();
+        const apiKey = env.SITE_KEY;
+        const apiString = env.API_ENDPOINT;
+
+        grecaptcha.execute(apiKey, { action: 'form' })
+          .then(function (token) {
+            axios.get(`${apiString}?token=${token}`)
+              .then(function (response) {
+                const score = response.data.score;
+                console.log("score: ", score);
+                $("#test-form-score").val(score);
+                $("#test-form").unbind('submit').submit();
+              })
+              .catch(function (error) {
+                console.log("error: ", error);
+              });
+          });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  Hello There
+  <p></p>
+  <form id="test-form" action="display.html" method="GET">
+    <label for="test-form-name">Name</label>
+    <input type="text" id="test-form-name" name="test-form-name">
+    <p></p>
+    <p></p>
+
+    <label for="test-form-email">Email</label>
+    <input type="text" id="test-form-email" name="test-form-email">
+    <p></p>
+
+    <input type="text" hidden id="test-form-score" name="test-form-score">
+    <p></p>
+
+    <input type="submit" id="test-form-submit" value="Send">
+  </form>
+  </form>
+</body>
+
+</html>

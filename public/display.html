@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <title>Recaptcha Test- Display</title>
+
+</head>
+
+<body>
+  <div>
+    <h4>Name</h4>
+    <p id="name"></p>
+    <h4>Email</h4>
+    <p id="email"></p>
+    <h4>Score</h4>
+    <p id="score"></p>
+  </div>
+</body>
+<script>
+  const query = window.location.search;
+  const values = query.split(/[?&=]+/);
+  document.getElementById("name").innerHTML = values[2];
+  document.getElementById("email").innerHTML = decodeURIComponent(values[4]);
+  document.getElementById("score").innerHTML = values[6];
+</script>
+
+</html>
