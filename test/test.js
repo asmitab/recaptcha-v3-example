@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
   await page.goto(process.env.ORIGIN);
 
   //Wait for 2s for all the scripts to load
-  await page.waitFor(2000);
+  await page.waitForFunction(() => 'grecaptcha' in window);
 
   await page.type('#test-form-name', 'puppeteer');
   await page.type('#test-form-email', 'puppeteer');
